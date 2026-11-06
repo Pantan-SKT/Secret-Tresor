@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="de-CH"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Secret-Tresor</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+<div id="auth" class="auth-screen"><div class="auth-card">
+  <div class="brand"><span class="brand-icon">◆</span> SECRET<span class="brand-accent">TRESOR</span></div>
+  <div class="auth-illustration"><span>🔐</span></div>
+  <div class="eyebrow">PRIVAT · LOKAL · VERSCHLÜSSELT</div>
+  <h1 id="auth-title">Tresor entsperren</h1><p id="auth-description">Gib dein Masterpasswort ein, um deine Zugangsdaten sicher zu öffnen.</p>
+  <form id="auth-form"><label for="master">Masterpasswort</label><div class="password-line"><input id="master" type="password" autocomplete="off" minlength="12" required placeholder="Dein Masterpasswort"><button class="eye" id="master-eye" type="button" aria-label="Passwort anzeigen">◉</button></div>
+  <div id="setup-confirm-wrap" hidden><label for="master-confirm">Masterpasswort wiederholen</label><input id="master-confirm" type="password" autocomplete="off" placeholder="Zur Bestätigung wiederholen"></div>
+  <button class="primary full" id="auth-button" type="submit">Tresor öffnen →</button></form><p class="warning" id="setup-warning" hidden>⚠️ Es gibt keine Passwort-Wiederherstellung. Bewahre das Masterpasswort sicher auf. Ohne dieses Passwort können die verschlüsselten Daten nicht wiederhergestellt werden.</p>
+  <p class="auth-foot">AES-256-GCM · scrypt · Nur 127.0.0.1</p></div></div>
+<div id="app" class="layout" hidden>
+ <aside class="sidebar"><div class="side-brand"><span class="brand-icon">◆</span><span>SECRET<span class="brand-accent">TRESOR</span></span></div>
+ <div class="side-label">ARBEITSBEREICH</div>
+ <button class="nav active" data-category="Alle">▦ <span>Alle Einträge</span><strong id="total-side">0</strong></button>
+ <div class="side-label category-label">KATEGORIEN</div><div id="categories"></div>
+ <div class="sidebar-spacer"></div>
+ <div class="status-box"><span class="status-dot"></span><div><b>Tresor entsperrt</b><small>Automatische Sperre nach 15 Min.</small></div></div>
+ <button class="nav" id="backup-btn">⇩ <span>Verschlüsseltes Backup</span></button>
+ <button class="nav" id="import-btn">⇧ <span>Backup wiederherstellen</span></button>
+ <button class="nav" id="change-password-btn">⚙ <span>Masterpasswort ändern</span></button>
+ <button class="nav danger-soft" id="lock-btn">⌁ <span>Tresor sperren</span></button>
+ </aside>
+ <main class="main"><header class="topbar"><div><span class="breadcrumb">MEIN TRESOR</span><span class="top-sep">/</span><span id="current-section">Alle Einträge</span></div><div class="top-status">● Lokal verschlüsselt gespeichert</div></header>
+ <section class="content"><div class="heading"><div><div class="eyebrow">DEINE ZUGANGSDATEN. AN EINEM ORT.</div><h1 id="page-heading">Alle Einträge</h1><p>Schlüssel, Secrets, Kennwörter und IDs sicher verwalten.</p></div><button id="new-btn" class="primary">＋ Neuer Eintrag</button></div>
+ <div class="stats"><div class="stat"><span>GESPEICHERTE EINTRÄGE</span><strong id="entry-count">0</strong><small>Verschlüsselt gespeichert</small></div><div class="stat"><span>KATEGORIEN</span><strong id="category-count">0</strong><small>Frei organisierbar</small></div><div class="stat"><span>SICHERHEIT</span><strong class="green">Aktiv <span>●</span></strong><small>AES-256-GCM-Verschlüsselung</small></div></div>
+ <div class="list-card"><div class="list-tools"><div class="search-wrap"><span>⌕</span><input id="search" type="search" placeholder="Suchen nach Name, Anbieter, Tag, ID ..." autocomplete="off"></div><select id="sort" aria-label="Sortieren"><option value="updated">Zuletzt geändert</option><option value="title">Name A–Z</option><option value="created">Zuletzt erstellt</option></select></div>
+ <div id="entries" class="entries"></div><div id="empty" class="empty"><div>◇</div><h3>Noch keine Einträge</h3><p>Lege deinen ersten Zugangsschlüssel oder dein erstes Passwort an.</p><button id="empty-new-btn" class="secondary">＋ Eintrag erstellen</button></div></div>
+ <div class="footer-note">🔒 Alle Daten werden auf diesem Computer verschlüsselt gespeichert. Keine Cloud, keine Synchronisation.</div></section></main>
+</div>
+<div class="overlay" id="modal" hidden><div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><div><div class="eyebrow">SECRET-TRESOR</div><h2 id="modal-title">Eintrag</h2></div><button id="modal-close" class="icon-btn" aria-label="Schliessen">✕</button></div><div id="modal-body" class="modal-body"></div><div class="modal-actions" id="modal-actions"></div></div></div>
+<div id="toast" class="toast" role="status" hidden></div><input type="file" id="import-file" accept=".json,.enc" hidden>
+<script src="/app.js" defer></script></body></html>
